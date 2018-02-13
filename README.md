@@ -110,8 +110,8 @@ Documentation
 The package [User Guide](https://apple.github.io/turicreate/docs/userguide) and [API Docs](https://apple.github.io/turicreate/docs/api) contain
 more details on how to use Turi Create.
 
-GPU Support
------------
+GPU Support (Linux only)
+--------------------------
 
 Turi Create **does not require a GPU**, but certain models can be accelerated by the use of a GPU. 
 To enable GPU support after installation of the `turicreate` package, please perform the following steps:
