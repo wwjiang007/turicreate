@@ -1,9 +1,9 @@
 #define BOOST_TEST_MODULE
 #include <boost/test/unit_test.hpp>
-#include <util/test_macros.hpp>
-#include <logger/logger.hpp>
-#include <sframe/integer_pack.hpp>
-#include <serialization/serialization_includes.hpp>
+#include <core/util/test_macros.hpp>
+#include <core/logging/logger.hpp>
+#include <core/storage/sframe_data/integer_pack.hpp>
+#include <core/storage/serialization/serialization_includes.hpp>
 using namespace turi;
 using namespace integer_pack;
 struct integer_pack_test {
@@ -110,7 +110,14 @@ struct integer_pack_test {
     
     // integer boundary cases
     int64_t maxint = std::numeric_limits<int64_t>::max() >> 4;
-    for (size_t multiplier = maxint; multiplier < maxint; ++multiplier) {
+
+    //
+    // FIXME: The following loop is a no-op; did the author mean for multiplier
+    // to range from (maxint >> 4) to maxint by powers of two?
+    //
+    for (size_t multiplier = static_cast<size_t>(maxint);
+         multiplier < static_cast<size_t>(maxint);
+         ++multiplier) {
       size_t len = 128;
       uint64_t in[len];
       uint64_t out[len];

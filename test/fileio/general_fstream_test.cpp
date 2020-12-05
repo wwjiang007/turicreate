@@ -4,9 +4,9 @@
  * be found in the LICENSE.txt file or at https://opensource.org/licenses/BSD-3-Clause
  */
 #include <iostream>
-#include <fileio/general_fstream.hpp>
-#include <logger/logger.hpp>
-#include <logger/assertions.hpp>
+#include <core/storage/fileio/general_fstream.hpp>
+#include <core/logging/logger.hpp>
+#include <core/logging/assertions.hpp>
 
 /**
  * Test the general_fstream.
@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
   std::string s;
   s.resize(16);
   for (size_t i = 0;i < 8; ++i) {
-    s[2 * i] = 255;
+    s[2 * i] = static_cast<char>(255);
     s[2 * i + 1] = 'a';
   }
   std::string expected;

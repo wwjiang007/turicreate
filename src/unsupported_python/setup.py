@@ -11,27 +11,35 @@ from setuptools import setup
 from setuptools.command.install import install
 
 PACKAGE_NAME="turicreate"
-VERSION='4.2'
+VERSION='6.0'
 
 class InstallEngine(install):
     def run(self):
         msg = ("""
 
+
         ==================================================================================
-        ERROR
+        TURICREATE ERROR
 
         If you see this message, pip install did not find an available binary package
-        for your system. Supported platforms are:
+        for your system.
 
-        * Linux x86_64 (including WSL on Windows 10).
-        * macOS 10.12+ x86_64.
-        * Python 2.7, 3.5, or 3.6.
+        Supported Platforms:
+            * macOS 10.12+ x86_64.
+            * Linux x86_64 (including WSL on Windows 10).
 
-        Other possible causes of this error are:
+        Support Python Versions:
+            * 2.7
+            * 3.5
+            * 3.6
+            * 3.7
+            * 3.8
 
-        * Outdated pip version (try `pip install -U pip`).
+        Another possible cause of this error is an outdated pip version. Try:
+            `pip install -U pip`
 
         ==================================================================================
+
 
         """)
         sys.stderr.write(msg)
@@ -55,6 +63,8 @@ if __name__ == '__main__':
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: Implementation :: CPython",
         "Topic :: Scientific/Engineering",
         "Topic :: Scientific/Engineering :: Information Analysis",

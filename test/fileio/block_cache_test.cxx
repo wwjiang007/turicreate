@@ -1,13 +1,15 @@
 #define BOOST_TEST_MODULE
 #include <boost/test/unit_test.hpp>
-#include <util/test_macros.hpp>
+#include <core/util/test_macros.hpp>
 #include <string>
 #include <set>
-#include <fileio/block_cache.hpp>
-#include <fileio/temp_files.hpp>
-#include <random/random.hpp>
+#include <core/storage/fileio/block_cache.hpp>
+#include <core/storage/fileio/temp_files.hpp>
+#include <core/random/random.hpp>
 
 using namespace turi;
+
+#ifndef TC_DISABLE_REMOTEFS
 
 
 struct block_cache_test {
@@ -107,3 +109,5 @@ BOOST_AUTO_TEST_CASE(test_block_cache_evict) {
   block_cache_test::test_block_cache_evict();
 }
 BOOST_AUTO_TEST_SUITE_END()
+
+#endif

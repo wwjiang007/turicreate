@@ -1,16 +1,16 @@
 #define BOOST_TEST_MODULE
 #include <boost/test/unit_test.hpp>
-#include <util/test_macros.hpp>
+#include <core/util/test_macros.hpp>
 #include <string>
 #include <random>
 #include <set>
 #include <sstream>
 #include <vector>
 #include <algorithm>
-#include <util/cityhash_tc.hpp>
-#include <sframe/sarray_iterators.hpp>
-#include <parallel/atomic.hpp>
-#include <parallel/lambda_omp.hpp>
+#include <core/util/cityhash_tc.hpp>
+#include <core/storage/sframe_data/sarray_iterators.hpp>
+#include <core/parallel/atomic.hpp>
+#include <core/parallel/lambda_omp.hpp>
 #include <iterator>
 
 using namespace turi;
@@ -25,8 +25,6 @@ struct sarray_iterator_test  {
     for(int segment_mode : {0, 1, 2, 3}) {
 
       std::shared_ptr<sarray<T> > data(new sarray<T>);
-
-      size_t num_threads = thread::cpu_count();
 
       switch(segment_mode) {
         case 0: {
@@ -133,7 +131,7 @@ struct sarray_iterator_test  {
           }
         }
 
-        size_t hit_count_ne_1_count =
+        TURI_ATTRIBUTE_UNUSED_NDEBUG size_t hit_count_ne_1_count =
             std::count_if(hit_count.begin(), hit_count.end(),
                           [](int i) { return i != 1; } );
 
@@ -168,7 +166,7 @@ struct sarray_iterator_test  {
             }
           });
 
-        size_t hit_count_ne_1_count =
+        TURI_ATTRIBUTE_UNUSED_NDEBUG size_t hit_count_ne_1_count =
             std::count_if(hit_count.begin(), hit_count.end(),
                           [](int i) { return i != 1; } );
 

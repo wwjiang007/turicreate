@@ -1,8 +1,8 @@
 #define BOOST_TEST_MODULE
 #include <boost/test/unit_test.hpp>
-#include <util/test_macros.hpp>
-#include <sgraph/sgraph.hpp>
-#include <sgraph/sgraph_triple_apply.hpp>
+#include <core/util/test_macros.hpp>
+#include <core/storage/sgraph_data/sgraph.hpp>
+#include <core/storage/sgraph_data/sgraph_triple_apply.hpp>
 #include <boost/bind.hpp>
 
 #include "sgraph_test_util.hpp"
@@ -18,10 +18,12 @@ std::vector<std::pair<flexible_type, flexible_type>> triple_apply_degree_count(
   sgraph_compute::triple_apply_fn_type fn;
   g.init_vertex_field("__degree__", flex_int(0));
   std::vector<std::string> vertex_fields = g.get_vertex_fields();
-  size_t degree_idx;
+  size_t degree_idx = static_cast<size_t>(-1);
   for (size_t i = 0; i < vertex_fields.size(); ++i) {
     if (vertex_fields[i] == "__degree__") degree_idx = i;
   }
+
+  TS_ASSERT(degree_idx != static_cast<size_t>(-1));
 
   if (dir == sgraph::edge_direction::IN_EDGE) {
     fn = [=](sgraph_compute::edge_scope& scope) {

@@ -1,22 +1,27 @@
+/* Copyright © 2017 Apple Inc. All rights reserved.
+ *
+ * Use of this source code is governed by a BSD-3-clause license that can
+ * be found in the LICENSE.txt file or at https://opensource.org/licenses/BSD-3-Clause
+ */
 const bool enable_expensive_tests = false;
 
 #define BOOST_TEST_MODULE
 #include <boost/test/unit_test.hpp>
-#include <util/test_macros.hpp>
+#include <core/util/test_macros.hpp>
 #include <vector>
 #include <string>
 #include <functional>
 
-#include <random/random.hpp>
+#include <core/random/random.hpp>
 
-#include <unity/toolkits/recsys/models/factorization_models.hpp>
-#include <unity/toolkits/util/data_generators.hpp>
-#include <unity/toolkits/ml_data_2/ml_data.hpp>
-#include <unity/toolkits/ml_data_2/ml_data_iterators.hpp>
-#include <sframe/testing_utils.hpp>
-#include <util/testing_utils.hpp>
-#include <util/testing_utils.hpp>
-#include <unity/lib/variant.hpp>
+#include <toolkits/recsys/models/factorization_models.hpp>
+#include <toolkits/util/data_generators.hpp>
+#include <toolkits/ml_data_2/ml_data.hpp>
+#include <toolkits/ml_data_2/ml_data_iterators.hpp>
+#include <core/storage/sframe_data/testing_utils.hpp>
+#include <core/util/testing_utils.hpp>
+#include <core/util/testing_utils.hpp>
+#include <model_server/lib/variant.hpp>
 
 
 #include <cfenv>
@@ -244,9 +249,10 @@ struct regressions  {
     auto training_stats
         = variant_get_value<std::map<std::string, variant_type> >(state["training_stats"]);
 
-    double initial_objective = variant_get_value<double>(training_stats["initial_objective_value"]);
-    double final_objective = variant_get_value<double>(training_stats["final_objective_value"]);
-    double initial_sgd_step = variant_get_value<double>(training_stats["sgd_step_size"]);
+    TURI_ATTRIBUTE_UNUSED_NDEBUG double initial_objective =
+      variant_get_value<double>(training_stats["initial_objective_value"]);
+    variant_get_value<double>(training_stats["final_objective_value"]);
+    variant_get_value<double>(training_stats["sgd_step_size"]);
 
 
     DASSERT_LT(initial_objective, 100);

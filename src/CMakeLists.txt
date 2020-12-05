@@ -1,35 +1,20 @@
-project(Turi)
 
 subdirs(
-  toolkits
-  cppipc
-  dot_graph_printer
-  exceptions
   external
-  fault
-  numerics
-  fileio
-  flexible_type
-  generics
-  globals
-  image
-  lambda
-  lazy_eval
-  logger
-  ml_data
-  nanosockets
-  optimization
-  platform
-  random
-  serialization
-  sframe
-  sframe_query_engine
-  sgraph
-  sketches
-  startup_teardown
-  table_printer
-  unity
-  util
+  capi
+  core
+  deployment
+  ml
+  toolkits
   visualization
-  )
+  model_server)
+
+
+if(TC_BUILD_PYTHON)
+  subdirs(python)
+
+  include_directories(${PYTHON_INCLUDE_DIRS})
+  message("Python library = ${PYTHON_LIBRARIES}")
+
+endif()
 

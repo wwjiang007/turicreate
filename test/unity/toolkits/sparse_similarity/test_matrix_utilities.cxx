@@ -1,14 +1,19 @@
+/* Copyright © 2017 Apple Inc. All rights reserved.
+ *
+ * Use of this source code is governed by a BSD-3-clause license that can
+ * be found in the LICENSE.txt file or at https://opensource.org/licenses/BSD-3-Clause
+ */
 #define BOOST_TEST_MODULE
 #include <boost/test/unit_test.hpp>
-#include <util/test_macros.hpp>
+#include <core/util/test_macros.hpp>
 #include <vector>
 #include <string>
-#include <random/random.hpp>
-#include <sframe/testing_utils.hpp>
-#include <util/testing_utils.hpp>
+#include <core/random/random.hpp>
+#include <core/storage/sframe_data/testing_utils.hpp>
+#include <core/util/testing_utils.hpp>
 
-#include <unity/toolkits/sparse_similarity/sliced_itemitem_matrix.hpp>
-#include <util/cityhash_tc.hpp>
+#include <toolkits/sparse_similarity/sliced_itemitem_matrix.hpp>
+#include <core/util/cityhash_tc.hpp>
 
 using namespace turi;
 using namespace turi::sparse_sim;
@@ -52,7 +57,8 @@ struct item_sim_utilities  {
         size_t num_blocks = block_boundaries.size() - 1;
 
         DASSERT_LE(num_blocks, num_items);
-        size_t blocks_if_simple_slices = (target_item_count + (num_items - 1) / num_items);
+        TURI_ATTRIBUTE_UNUSED_NDEBUG size_t blocks_if_simple_slices =
+          (target_item_count + (num_items - 1) / num_items);
         DASSERT_LE(num_blocks, blocks_if_simple_slices);
         DASSERT_EQ(block_boundaries.back(), num_items);
 
@@ -61,8 +67,10 @@ struct item_sim_utilities  {
 
           // Test that the block boundaries are actually increasing
           if(i != 0) {
-            size_t block_size_1 = block_boundaries[i] -  block_boundaries[i-1];
-            size_t block_size_2 = block_boundaries[i+1] -  block_boundaries[i];
+            TURI_ATTRIBUTE_UNUSED_NDEBUG size_t block_size_1 =
+              block_boundaries[i] -  block_boundaries[i-1];
+            TURI_ATTRIBUTE_UNUSED_NDEBUG size_t block_size_2 =
+              block_boundaries[i+1] -  block_boundaries[i];
             if(block_boundaries[i+1] != num_items) {
               DASSERT_LE(block_size_1, block_size_2);
             }

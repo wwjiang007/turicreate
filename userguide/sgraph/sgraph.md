@@ -28,7 +28,7 @@ verts = [Vertex(0, attr={'breed': 'labrador'}),
          Vertex(2, attr={'breed': 'vizsla'})]
 g = g.add_vertices(verts)
 g = g.add_edges(Edge(1, 2))
-print g
+print(g)
 ```
 ```no-highlight
 SGraph({'num_edges': 1, 'num_vertices': 3})
@@ -54,7 +54,7 @@ edge_data = SFrame.read_csv('bond_edges.csv')
 
 g = SGraph()
 g = g.add_edges(edge_data, src_field='src', dst_field='dst')
-print g
+print(g)
 ```
 ```no-highlight
 SGraph({'num_edges': 20, 'num_vertices': 10})
@@ -85,14 +85,7 @@ new_graph = turicreate.load_sgraph('james_bond.sgraph')
 
 #### Inspecting SGraphs
 
-Small graphs can be explored very efficiently with the `SGraph.show` method,
-which displays a plot of the graph. The vertex labels can be IDs or any vertex
-attribute.
-
-![Bond graph](images/bond_basic.png)
-
-For large graphs visual displays are difficult, but graph exploration
-can still be done with the `SGraph.summary`---which prints the number of
+Graphs can be explored with `SGraph.summary`---which prints the number of
 vertices and edges---or by retrieving and plotting subsets of edges and
 vertices.
 
@@ -110,7 +103,7 @@ edges.
 
 ```python
 sub_verts = g.get_vertices(ids=['James Bond'])
-print sub_verts
+print(sub_verts)
 ```
 ```no-highlight
 +------------+--------+-----------------+---------+
@@ -123,7 +116,7 @@ print sub_verts
 
 ```python
 sub_edges = g.get_edges(fields={'relation': 'worksfor'})
-print sub_edges
+print(sub_edges)
 ```
 ```no-highlight
 +---------------+-------------+----------+
@@ -151,10 +144,11 @@ a neighbor.
 ```python
 targets = ['James Bond', 'Moneypenny']
 subgraph = g.get_neighborhood(ids=targets, radius=1, full_subgraph=True)
+print(subgraph)
 ```
-![Bond neighborhood](images/bond_neighborhood.png)
-
-
+```no-highlight
+SGraph({'num_edges': 15, 'num_vertices': 8})
+```
 
 #### Modifying SGraphs
 

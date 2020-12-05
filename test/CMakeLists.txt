@@ -1,12 +1,12 @@
-project(TuriTest)
+project(Turi)
 
 enable_testing()
 
 subdirs(
+        annotation
         toolkits
         ml_data
         optimization
-        user_pagefault
         util
         serialization
         logger
@@ -18,7 +18,6 @@ subdirs(
         cppipc
         flexible_type
         parallel
-        fiber
         lambda
         sframe
         sgraph
@@ -30,4 +29,16 @@ subdirs(
         table_printer
         network
         process
-  )
+        vega_renderer
+        neural_net
+        benchmark
+        exceptions
+)
+
+if(${TC_BUILD_CAPI})
+  message("Building C API Tests.")
+  subdirs(capi)
+else()
+  message("Skipping build of C APIs Tests.")
+endif()
+

@@ -29,20 +29,23 @@ import turicreate as tc
 data = tc.SFrame('hapt_data.sframe')
 
 # Train/test split by recording sessions
-train, test = tc.activity_classifier.util.random_split_by_session(data, session_id='exp_id', fraction=0.8)
+train, test = tc.activity_classifier.util.random_split_by_session(data,
+                                                                  session_id='exp_id',
+                                                                  fraction=0.8)
 
 # Create an activity classifier
-model = tc.activity_classifier.create(train, session_id='exp_id', target='activity', prediction_window=50)
+model = tc.activity_classifier.create(train, session_id='exp_id', target='activity',
+                                      prediction_window=50)
 
 # Evaluate the model and save the results into a dictionary
 metrics = model.evaluate(test)
 print(metrics['accuracy'])
 
 # Save the model for later use in Turi Create
-model.save('mymodel.model')
+model.save('hapt.model')
 
 # Export for use in Core ML
-model.export_coreml('MyActivityClassifier.mlmodel')
+model.export_coreml('MyCustomActivityClassifier.mlmodel')
 ```
 
 Since we have created the model with samples taken at 50Hz and set the ```prediction_window``` to 50, we will get one prediction per second. Invoking our newly created model on the above 3-seconds walking example produces the following per-second predictions:

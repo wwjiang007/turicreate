@@ -1,6 +1,14 @@
-<img align="right" src="https://docs-assets.developer.apple.com/turicreate/turi-dog.svg" alt="Turi Create" width="100">
+Quick Links: [Installation](#supported-platforms) | [Documentation](#documentation) | [WWDC 2019](https://developer.apple.com/videos/play/wwdc2019/420/) |  [WWDC 2018](https://developer.apple.com/videos/play/wwdc2018/712/)
+
+[![Build Status](https://travis-ci.com/apple/turicreate.svg?branch=master)](#)
+[![PyPI Release](https://img.shields.io/pypi/v/turicreate.svg)](#)
+[![Python Versions](https://img.shields.io/pypi/pyversions/turicreate.svg)](#)
+
+[<img align="right" src="https://docs-assets.developer.apple.com/turicreate/turi-dog.svg" alt="Turi Create" width="100">](#)
 
 # Turi Create 
+
+Check out our talks at [WWDC 2019](https://developer.apple.com/videos/play/wwdc2019/420/) and at [WWDC 2018](https://developer.apple.com/videos/play/wwdc2018/712/)!
 
 Turi Create simplifies the development of custom machine learning models. You
 don't have to be a machine learning expert to add recommendations, object
@@ -12,6 +20,25 @@ your app.
 * **Flexible:** Supports text, images, audio, video and sensor data
 * **Fast and Scalable:** Work with large datasets on a single machine
 * **Ready To Deploy:** Export models to Core ML for use in iOS, macOS, watchOS, and tvOS apps
+
+With Turi Create, you can accomplish many common ML tasks:
+
+| ML Task                 | Description                      |
+|:------------------------:|:--------------------------------:|
+| [Recommender](https://apple.github.io/turicreate/docs/userguide/recommender/)             | Personalize choices for users    |
+| [Image Classification](https://apple.github.io/turicreate/docs/userguide/image_classifier/)    | Label images                     |
+| [Drawing Classification](https://apple.github.io/turicreate/docs/userguide/drawing_classifier)  | Recognize Pencil/Touch Drawings and Gestures                     |
+| [Sound Classification](https://apple.github.io/turicreate/docs/userguide/sound_classifier)  | Classify sounds                     |
+| [Object Detection](https://apple.github.io/turicreate/docs/userguide/object_detection/)        | Recognize objects within images  |
+| [One Shot Object Detection](https://apple.github.io/turicreate/docs/userguide/one_shot_object_detection/)    | Recognize 2D objects within images using a single example  |
+| [Style Transfer](https://apple.github.io/turicreate/docs/userguide/style_transfer/)        | Stylize images |
+| [Activity Classification](https://apple.github.io/turicreate/docs/userguide/activity_classifier/) | Detect an activity using sensors |
+| [Image Similarity](https://apple.github.io/turicreate/docs/userguide/image_similarity/)        | Find similar images              |
+| [Classifiers](https://apple.github.io/turicreate/docs/userguide/supervised-learning/classifier.html)             | Predict a label           |
+| [Regression](https://apple.github.io/turicreate/docs/userguide/supervised-learning/regression.html)              | Predict numeric values           |
+| [Clustering](https://apple.github.io/turicreate/docs/userguide/clustering/)              | Group similar datapoints together|
+| [Text Classifier](https://apple.github.io/turicreate/docs/userguide/text_classifier/)         | Analyze sentiment of messages    |
+
 
 Example: Image classifier with a few lines of code
 --------------------------------------------------
@@ -38,36 +65,23 @@ It's easy to use the resulting model in an [iOS application](https://developer.a
 
 <p align="center"><img src="https://docs-assets.developer.apple.com/published/a2c37bce1f/689f61a6-1087-4112-99d9-bbfb326e3138.png" alt="Turi Create" width="600"></p>
 
-With Turi Create, you can tackle a number of common scenarios:
-* [Recommender systems](https://apple.github.io/turicreate/docs/userguide/recommender/)
-* [Image classification](https://apple.github.io/turicreate/docs/userguide/image_classifier/)
-* [Image similarity](https://apple.github.io/turicreate/docs/userguide/image_similarity/)
-* [Object detection](https://apple.github.io/turicreate/docs/userguide/object_detection/)
-* [Activity classifier](https://apple.github.io/turicreate/docs/userguide/activity_classifier/)
-* [Text classifier](https://apple.github.io/turicreate/docs/userguide/text_classifier/)
-
-You can also work with essential machine learning models, organized into algorithm-based toolkits:
-* [Classifiers](https://apple.github.io/turicreate/docs/userguide/supervised-learning/classifier.html)
-* [Regression](https://apple.github.io/turicreate/docs/userguide/supervised-learning/regression.html)
-* [Graph analytics](https://apple.github.io/turicreate/docs/userguide/graph_analytics/)
-* [Clustering](https://apple.github.io/turicreate/docs/userguide/clustering/)
-* [Nearest Neighbors](https://apple.github.io/turicreate/docs/userguide/nearest_neighbors/nearest_neighbors.html)
-* [Topic models](https://apple.github.io/turicreate/docs/userguide/text/)
-
 Supported Platforms
 -------------------
 
 Turi Create supports:
 
 * macOS 10.12+
-* Linux (with glibc 2.12+)
+* Linux (with glibc 2.10+)
 * Windows 10 (via WSL)
 
 System Requirements
 -------------------
 
-* Python 2.7, 3.5, 3.6
+Turi Create requires:
+
+* Python 2.7, 3.5, 3.6, 3.7, 3.8
 * x86\_64 architecture
+* At least 4 GB of RAM
 
 Installation
 ------------
@@ -95,8 +109,8 @@ source ~/venv/bin/activate
 ```
 Alternatively, if you are using [Anaconda](https://www.anaconda.com/what-is-anaconda/), you may use its virtual environment:
 ```shell
-conda create -n venv python=2.7 anaconda
-source activate venv
+conda create -n virtual_environment_name anaconda
+conda activate virtual_environment_name
 ```
 
 To install `Turi Create` within your virtual environment:
@@ -113,33 +127,20 @@ more details on how to use Turi Create.
 GPU Support
 -----------
 
-Turi Create **does not require a GPU**, but certain models can be accelerated by the use of a GPU. 
-To enable GPU support after installation of the `turicreate` package, please perform the following steps:
+Turi Create **does not require a GPU**, but certain models can be accelerated 9-13x by utilizing a GPU.
 
- * Install CUDA 8.0 ([instructions](http://docs.nvidia.com/cuda/cuda-installation-guide-linux/))
- * Install cuDNN 5 for CUDA 8.0 ([instructions](https://developer.nvidia.com/cudnn))
+| Linux                     | macOS 10.13+         | macOS 10.14+ discrete GPUs, macOS 10.15+ integrated GPUs |
+| :-------------------------|:---------------------|:---------------------------------------------------------|
+| Activity Classification   | Image Classification | Activity Classification                                  |
+| Drawing Classification    | Image Similarity     | Object Detection                                         |
+| Image Classification      | Sound Classification | One Shot Object Detection                                |
+| Image Similarity          |                      | Style Transfer                                           |
+| Object Detection          |                      |                                                          |
+| One Shot Object Detection |                      |                                                          |
+| Sound Classification      |                      |                                                          |
+| Style Transfer            |                      |                                                          |
 
-Make sure to add the CUDA library path to your `LD_LIBRARY_PATH` environment
-variable.  In the typical case, this means adding the following line to your
-`~/.bashrc` file:
-
-```shell
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-```
-
-If you installed the cuDNN files into a separate directory, make sure to
-separately add it as well. Next step is to uninstall `mxnet` and install the
-CUDA-enabled `mxnet-cu80` package:
-
-```
-(venv) pip uninstall -y mxnet
-(venv) pip install mxnet-cu80==0.12.1
-```
-
-Make sure you install the same version of MXNet as the one `turicreate` recommends
-(currently `0.12.1`). If you have trouble setting up the GPU, the [MXNet
-installation instructions](https://mxnet.incubator.apache.org/get_started/install.html) may
-offer additional help.
+macOS GPU support is automatic. For Linux GPU support, see [LinuxGPU.md](LinuxGPU.md).
 
 Building From Source
 ---------------------
@@ -149,4 +150,8 @@ If you want to build Turi Create from source, see [BUILD.md](BUILD.md).
 Contributing
 ------------
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+Prior to contributing, please review [CONTRIBUTING.md](CONTRIBUTING.md) and do
+not provide any contributions unless you agree with the terms and conditions
+set forth in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+We want the Turi Create community to be as welcoming and inclusive as possible, and have adopted a [Code of Conduct](CODE_OF_CONDUCT.md) that we expect all community members, including contributors, to read and observe.

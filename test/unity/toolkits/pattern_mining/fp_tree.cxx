@@ -1,16 +1,16 @@
 #define BOOST_TEST_MODULE
 #include <boost/test/unit_test.hpp>
-#include <util/test_macros.hpp>
+#include <core/util/test_macros.hpp>
 #include <stdlib.h>
 #include <vector>
 #include <string>
 #include <functional>
 #include <random>
 
-#include <unity/lib/gl_sframe.hpp>
-#include <unity/lib/unity_sframe.hpp>
-#include <unity/lib/variant_deep_serialize.hpp>
-#include <unity/toolkits/pattern_mining/fp_tree.hpp>
+#include <core/data/sframe/gl_sframe.hpp>
+#include <core/storage/sframe_interface/unity_sframe.hpp>
+#include <model_server/lib/variant_deep_serialize.hpp>
+#include <toolkits/pattern_mining/fp_tree.hpp>
 
 #include <cfenv>
 
@@ -744,12 +744,9 @@ struct fp_tree_test  {
 //      TS_ASSERT_EQUALS(my_tree.root_node->children_nodes.size(), 1);
 //      TS_ASSERT_EQUALS(my_tree.root_node->children_nodes[0]->item_id, 1);
 //      TS_ASSERT_EQUALS(my_tree.root_node->children_nodes[0]->item_count, 3);
-//      TS_ASSERT_EQUALS(my_tree.root_node->children_nodes[0]-> \
-//          children_nodes.size(), 1);
-//      TS_ASSERT_EQUALS(my_tree.root_node->children_nodes[0]-> \
-//          children_nodes[0]->item_id, 2);
-//      TS_ASSERT_EQUALS(my_tree.root_node->children_nodes[0]-> \
-//          children_nodes[0]->item_count, 1);
+//      TS_ASSERT_EQUALS(my_tree.root_node->children_nodes[0]->children_nodes.size(), 1);
+//      TS_ASSERT_EQUALS(my_tree.root_node->children_nodes[0]->children_nodes[0]->item_id, 2);
+//      TS_ASSERT_EQUALS(my_tree.root_node->children_nodes[0]->children_nodes[0]->item_count, 1);
 //    }
 
     // Test fp_top_k_tree::add_transaction()

@@ -1,0 +1,10 @@
+make_library(libbz2
+  SOURCES
+blocksort.c
+huffman.c
+crctable.c
+bzlib.c
+compress.c
+decompress.c
+randtable.c
+)

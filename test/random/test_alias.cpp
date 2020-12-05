@@ -4,8 +4,8 @@
  * be found in the LICENSE.txt file or at https://opensource.org/licenses/BSD-3-Clause
  */
 #include <timer/timer.hpp>
-#include <random/random.hpp>
-#include <random/alias.hpp>
+#include <core/random/random.hpp>
+#include <core/random/alias.hpp>
 #include <vector>
 #include <string>
 #include <utility>
@@ -56,17 +56,17 @@ void run_alias_benchmark(size_t num_samples, std::vector<double> probs) {
   auto A = random::alias_sampler(probs);
   std::cout << std::setw(20) << "alias setup time: " 
             << ti.current_time() << std::endl;
-  size_t k;
+  size_t k = 0;
   ti.start();
   for (size_t i=0; i < num_samples; ++i) {
-    k = A.sample();
+    k += A.sample();
   }
   std::cout << std::setw(20) << "alias " 
             << ti.current_time() << std::endl;
 
   ti.start();
   for (size_t i=0; i < num_samples; ++i) {
-    k = random::multinomial(probs);
+    k += random::multinomial(probs);
   }
   std::cout << std::setw(20) << "multinomial " 
             << ti.current_time() << std::endl;
@@ -74,7 +74,7 @@ void run_alias_benchmark(size_t num_samples, std::vector<double> probs) {
   size_t K = probs.size();
   ti.start();
   for (size_t i=0; i < num_samples; ++i) {
-    k = random::fast_uniform<size_t>(0, K);
+    k += random::fast_uniform<size_t>(0, K);
   }
   std::cout << std::setw(20) << "fast unif " 
             << ti.current_time() << std::endl;
